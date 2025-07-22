@@ -1,7 +1,5 @@
 # App de Apontamento de Produção
 
-![Logo do Projeto](https://i.imgur.com/gK6ZzJg.png) 
-
 ## 📖 Sobre o Projeto
 
 Este é um protótipo funcional de um aplicativo multiplataforma, desenvolvido em **.NET MAUI**, para o registro e gerenciamento de produção de equipes de campo. A solução foi projetada para digitalizar e otimizar o processo de apontamento, substituindo planilhas e anotações manuais por uma interface móvel, moderna e intuitiva.
