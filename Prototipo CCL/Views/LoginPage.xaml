@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Prototipo_CCL.ViewModels"
+             x:Class="Prototipo_CCL.Views.LoginPage"
+             Shell.NavBarIsVisible="False">
+
+    <ContentPage.BindingContext>
+        <vm:LoginViewModel />
+    </ContentPage.BindingContext>
+
+    <!-- Fundo com gradiente linear -->
+    <ContentPage.Background>
+        <LinearGradientBrush StartPoint="0,0" EndPoint="0,1">
+            <GradientStop Color="#86AFC3" Offset="0.0" />
+            <GradientStop Color="#FFFFFF" Offset="1.0" />
+        </LinearGradientBrush>
+    </ContentPage.Background>
+
+    <Grid>
+        <VerticalStackLayout Spacing="20" Padding="30" VerticalOptions="Center">
+
+            <!-- Logo em PNG -->
+            <Image HeightRequest="180"
+                   WidthRequest="180"
+                   HorizontalOptions="Center"
+                   Source="logobuild.png" />
+
+            <!-- Título -->
+            <Label Text="Bem-vindo!"
+           FontSize="35"
+           FontAttributes="Bold"
+           TextColor="#101c5a"
+           HorizontalOptions="Center"/>
+
+            <Label Text="Acesse sua conta"
+           FontSize="14"
+           TextColor="#666"
+           HorizontalOptions="Center"/>
+
+            <!-- Campo de Usuário -->
+            <Border StrokeThickness="0" BackgroundColor="#FFFFFF" Stroke="#DDD" StrokeShape="RoundRectangle 8">
+                <Entry Placeholder="E-mail ou telefone"
+               Text="{Binding Username}"
+               PlaceholderColor="#999"
+               FontSize="14"
+               TextColor="#222"
+               Margin="12,10"
+               BackgroundColor="Transparent"/>
+            </Border>
+
+            <!-- Campo de Senha -->
+            <Border StrokeThickness="0" BackgroundColor="#FFFFFF" Stroke="#DDD" StrokeShape="RoundRectangle 8">
+                <Entry Placeholder="Senha"
+               IsPassword="True"
+               Text="{Binding Password}"
+               PlaceholderColor="#999"
+               FontSize="14"
+               TextColor="#222"
+               Margin="12,10"
+               BackgroundColor="Transparent"/>
+            </Border>
+
+            <!-- Botão de Login -->
+            <Button Text="Entrar" 
+                    Command="{Binding LoginCommand}" 
+            BackgroundColor="#151c5a"
+            TextColor="White"
+            FontAttributes="Bold"
+            CornerRadius="8"
+            FontSize="16"
+            HeightRequest="45"/>
+
+        </VerticalStackLayout>
+    </Grid>
+</ContentPage>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="Prototipo_CCL.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:Prototipo_CCL.Views"
+    Shell.FlyoutBehavior="Disabled">
+
+    <ShellContent
+        Title="Login"
+        ContentTemplate="{DataTemplate local:LoginPage}"
+        Route="LoginPage" />
+
+    <TabBar Route="MainApp">
+        <Tab Title="Ponto" Icon="{FontImage FontFamily=FontAwesome, Glyph=&#xf017;}">
+            <ShellContent ContentTemplate="{DataTemplate local:PontoPage}" Route="PontoPage"/>
+        </Tab>
+        <Tab Title="Apontamentos" Icon="{FontImage FontFamily=FontAwesome, Glyph=&#xf0ca;}">
+            <ShellContent ContentTemplate="{DataTemplate local:MainPage}" Route="MainPage"/>
+        </Tab>
+        <Tab Title="Almoço" Icon="{FontImage FontFamily=FontAwesome, Glyph=&#xf2e7;}">
+            <ShellContent ContentTemplate="{DataTemplate local:AlmocoPage}" Route="AlmocoPage"/>
+        </Tab>
+        <Tab Title="Usuário" Icon="{FontImage FontFamily=FontAwesome, Glyph=&#xf007;}">
+            <ShellContent ContentTemplate="{DataTemplate local:UsuarioPage}" Route="UsuarioPage"/>
+        </Tab>
+    </TabBar>
+
+</Shell>

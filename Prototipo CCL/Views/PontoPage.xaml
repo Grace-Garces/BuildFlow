@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Prototipo_CCL.ViewModels"
+             x:Class="Prototipo_CCL.Views.PontoPage"
+             Title="Registro de Ponto"
+             BackgroundColor="#1E1E1E">
+
+    <ContentPage.BindingContext>
+        <vm:PontoViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid Padding="24" RowDefinitions="Auto,*,Auto">
+
+        <!-- Cabeçalho com hora -->
+        <StackLayout Spacing="4" VerticalOptions="Start">
+            <Label Text="{Binding HoraAtual, StringFormat='{0:HH:mm:ss}'}"
+                   FontSize="52"
+                   FontAttributes="Bold"
+                   TextColor="White"
+                   HorizontalTextAlignment="Center" />
+
+            <Label Text="{Binding HoraAtual, StringFormat='{0:dddd, dd MMM yyyy}'}"
+                   FontSize="14"
+                   TextColor="#AAAAAA"
+                   HorizontalTextAlignment="Center" />
+        </StackLayout>
+
+        <!-- Conteúdo principal -->
+        <VerticalStackLayout Grid.Row="1" Spacing="24" VerticalOptions="Center" HorizontalOptions="Center">
+
+            <!-- Botão de bater ponto grande, central -->
+            <Border BackgroundColor="#F57C00"
+                    StrokeShape="RoundRectangle 90"
+                    HeightRequest="80"
+                    WidthRequest="220">
+                <Border.GestureRecognizers>
+                    <TapGestureRecognizer Command="{Binding BaterPontoCommand}" />
+                </Border.GestureRecognizers>
+                <FlexLayout Direction="Row" JustifyContent="Center" AlignItems="Center">
+                    <Image WidthRequest="24" HeightRequest="24" Margin="0,0,10,0">
+                        <Image.Source>
+                            <FontImageSource Glyph="&#xf017;" FontFamily="FontAwesome" Color="White" Size="24"/>
+                        </Image.Source>
+                    </Image>
+                    <Label Text="Bater Ponto"
+                           FontSize="18"
+                           FontAttributes="Bold"
+                           TextColor="White" />
+                </FlexLayout>
+            </Border>
+
+            <!-- Feedback sobre último ponto -->
+            <Label Text="{Binding MensagemUltimoPonto}"
+                   IsVisible="{Binding IsUltimoPontoVisible}"
+                   TextColor="#4CAF50"
+                   FontSize="14"
+                   HorizontalTextAlignment="Center" />
+
+        </VerticalStackLayout>
+
+        <!-- Link para apontamentos -->
+        <Border Grid.Row="2"
+                Margin="0,30,0,0"
+                BackgroundColor="Transparent"
+                Stroke="#F57C00"
+                StrokeThickness="2"
+                HeightRequest="48"
+                StrokeShape="RoundRectangle 16">
+            <Border.GestureRecognizers>
+                <TapGestureRecognizer Command="{Binding IrParaApontamentosCommand}" />
+            </Border.GestureRecognizers>
+            <FlexLayout Direction="Row" JustifyContent="Center" AlignItems="Center">
+                <Image WidthRequest="20" HeightRequest="20" Margin="0,0,10,0">
+                    <Image.Source>
+                        <FontImageSource Glyph="&#xf0ca;" FontFamily="FontAwesome" Color="#F57C00" Size="20"/>
+                    </Image.Source>
+                </Image>
+                <Label Text="Apontamentos de Produção"
+                       TextColor="#F57C00"
+                       FontSize="14"
+                       FontAttributes="Bold" />
+            </FlexLayout>
+        </Border>
+    </Grid>
+</ContentPage>

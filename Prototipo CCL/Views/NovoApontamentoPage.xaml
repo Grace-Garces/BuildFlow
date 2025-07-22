@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Prototipo_CCL.ViewModels"
+             x:Class="Prototipo_CCL.Views.NovoApontamentoPage"
+             Title="Novo Apontamento">
+    <ContentPage.BindingContext>
+        <vm:NovoApontamentoViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+            <Label Text="1. Informações da Equipe" FontSize="Title" FontAttributes="Bold"/>
+            <Frame Padding="15" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Serviço:"/>
+                    <Picker ItemsSource="{Binding Servicos}" SelectedItem="{Binding NovoApontamento.Servico}" />
+                    <Label Text="Equipe:"/>
+                    <Picker ItemsSource="{Binding Equipes}" SelectedItem="{Binding NovoApontamento.Equipe}" />
+                </VerticalStackLayout>
+            </Frame>
+
+            <Label Text="2. Composição da Equipe" FontSize="Title" FontAttributes="Bold"/>
+            <Frame Padding="15" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Obs: Em um app real, isso seria buscado automaticamente." FontSize="Caption" TextColor="Gray"/>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Text="Trabalhadores:" VerticalOptions="Center"/>
+                        <Stepper Grid.Column="1" Value="{Binding NovoApontamento.Trabalhadores}" Minimum="0" Maximum="20"/>
+                        <Label Grid.Column="2" Text="{Binding NovoApontamento.Trabalhadores}" VerticalOptions="Center" Margin="10,0"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Text="Motoristas:" VerticalOptions="Center"/>
+                        <Stepper Grid.Column="1" Value="{Binding NovoApontamento.Motoristas}" Minimum="0" Maximum="5"/>
+                        <Label Grid.Column="2" Text="{Binding NovoApontamento.Motoristas}" VerticalOptions="Center" Margin="10,0"/>
+                    </Grid>
+                    <Grid ColumnDefinitions="*, Auto">
+                        <Label Text="Tratores:" VerticalOptions="Center"/>
+                        <Stepper Grid.Column="1" Value="{Binding NovoApontamento.Tratores}" Minimum="0" Maximum="5"/>
+                        <Label Grid.Column="2" Text="{Binding NovoApontamento.Tratores}" VerticalOptions="Center" Margin="10,0"/>
+                    </Grid>
+                </VerticalStackLayout>
+            </Frame>
+
+            <Button Text="Iniciar Produção" 
+                    Command="{Binding IniciarProducaoCommand}" 
+                    FontSize="Large" 
+                    Margin="0,20,0,0"/>
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

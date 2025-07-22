@@ -1,0 +1,38 @@
+﻿<?xml version="1.0" encoding="UTF-8" ?>
+<ResourceDictionary
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Color x:Key="Primary">#005A9C</Color>
+    <!-- Azul Corporativo Forte -->
+    <Color x:Key="Secondary">#007BFF</Color>
+    <!-- Azul Vibrante para Destaques -->
+    <Color x:Key="Accent">#FFA500</Color>
+    <!-- Laranja para Ações e Alertas -->
+
+    <Color x:Key="PageBackground">#F7F9FC</Color>
+    <!-- Cinza Muito Claro para Fundo de Página -->
+    <Color x:Key="CardBackground">#FFFFFF</Color>
+    <!-- Branco para os Cards -->
+
+    <Color x:Key="TextPrimary">#333333</Color>
+    <!-- Cinza Escuro para Texto Principal -->
+    <Color x:Key="TextSecondary">#666666</Color>
+    <!-- Cinza Médio para Texto Secundário -->
+    <Color x:Key="TextPlaceholder">#A9A9A9</Color>
+    <!-- Cinza Claro para Placeholders -->
+
+    <Color x:Key="BorderColor">#E0E0E0</Color>
+    <!-- Cinza Claro para Bordas -->
+
+    <Color x:Key="Success">#28A745</Color>
+    <!-- Verde para Sucesso -->
+    <Color x:Key="Danger">#DC3545</Color>
+    <!-- Vermelho para Perigo/Exclusão -->
+    <Color x:Key="Warning">#FFC107</Color>
+    <!-- Amarelo para Avisos -->
+
+    <Color x:Key="White">#FFFFFF</Color>
+    <Color x:Key="Black">#000000</Color>
+
+</ResourceDictionary>

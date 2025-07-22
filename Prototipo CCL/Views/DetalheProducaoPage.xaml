@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Prototipo_CCL.ViewModels"
+             x:Class="Prototipo_CCL.Views.DetalheProducaoPage"
+             Title="Registro de Produção">
+    <ContentPage.BindingContext>
+        <vm:DetalheProducaoViewModel />
+    </ContentPage.BindingContext>
+
+    <ScrollView>
+        <VerticalStackLayout Spacing="15" Padding="20">
+
+            <Label FontSize="Large" FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="{Binding ApontamentoAtual.Servico}"/>
+                        <Span Text=" - "/>
+                        <Span Text="{Binding ApontamentoAtual.Equipe}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <!-- Seção de Produção -->
+            <Frame Padding="15" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Registro de Produção" FontSize="Medium" FontAttributes="Bold"/>
+                    <Button Text="Tirar Foto do Local" Command="{Binding TirarFotoCommand}"/>
+                    <Image Source="{Binding ApontamentoAtual.CaminhoFoto}" HeightRequest="150" Aspect="AspectFill" IsVisible="{Binding ApontamentoAtual.CaminhoFoto, Converter={StaticResource IsNotNullOrEmptyConverter}}"/>
+                    <Label Text="{Binding ApontamentoAtual.LocalizacaoFoto}" FontSize="Micro" HorizontalOptions="Center"/>
+
+                    <Label Text="Ponto de Início (Km, Estaca, etc):"/>
+                    <Entry Text="{Binding ApontamentoAtual.PontoInicial}" Placeholder="Ex: Km 15+200"/>
+
+                    <Label Text="Largura do Trecho (metros):"/>
+                    <Entry Text="{Binding ApontamentoAtual.LarguraTrecho}" Keyboard="Numeric"/>
+
+                    <Label FontSize="Medium">
+                        <Label.FormattedText>
+                            <FormattedString>
+                                <Span Text="Área Trabalhada: "/>
+                                <Span Text="{Binding ApontamentoAtual.AreaCalculada, StringFormat='{0:N4} ha'}" FontAttributes="Bold"/>
+                            </FormattedString>
+                        </Label.FormattedText>
+                    </Label>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Seção de Pausas -->
+            <Frame Padding="15" CornerRadius="10">
+                <VerticalStackLayout Spacing="10">
+                    <Label Text="Controle de Pausas" FontSize="Medium" FontAttributes="Bold"/>
+                    <Button Text="Iniciar Pausa Almoço" Command="{Binding IniciarPausaCommand}" IsEnabled="{Binding ApontamentoAtual.InicioPausaAlmoco, Converter={StaticResource IsNullConverter}}"/>
+                    <Label Text="{Binding ApontamentoAtual.InicioPausaAlmoco, StringFormat='Pausa iniciada às {0:HH:mm}'}" IsVisible="{Binding ApontamentoAtual.InicioPausaAlmoco, Converter={StaticResource IsNotNullConverter}}"/>
+
+                    <Label Text="Local da Refeição:" IsVisible="{Binding ApontamentoAtual.InicioPausaAlmoco, Converter={StaticResource IsNotNullConverter}}"/>
+                    <Picker ItemsSource="{Binding Restaurantes}" SelectedItem="{Binding ApontamentoAtual.Restaurante}" IsVisible="{Binding ApontamentoAtual.InicioPausaAlmoco, Converter={StaticResource IsNotNullConverter}}"/>
+
+                    <Button Text="Finalizar Pausa / Retornar" Command="{Binding FinalizarPausaCommand}" IsEnabled="{Binding ApontamentoAtual.FimPausaAlmoco, Converter={StaticResource IsNullConverter}}"/>
+                    <Label Text="{Binding ApontamentoAtual.FimPausaAlmoco, StringFormat='Pausa finalizada às {0:HH:mm}'}" IsVisible="{Binding ApontamentoAtual.FimPausaAlmoco, Converter={StaticResource IsNotNullConverter}}"/>
+                </VerticalStackLayout>
+            </Frame>
+
+            <!-- Encerrar -->
+            <Button Text="Encerrar Apontamento" 
+                    Command="{Binding EncerrarApontamentoCommand}" 
+                    BackgroundColor="DarkRed" 
+                    TextColor="White"
+                    FontSize="Large" 
+                    Margin="0,20,0,0"/>
+
+        </VerticalStackLayout>
+    </ScrollView>
+</ContentPage>

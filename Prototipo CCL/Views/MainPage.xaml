@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:vm="clr-namespace:Prototipo_CCL.ViewModels"
+             xmlns:model="clr-namespace:Prototipo_CCL.Models"
+             x:Class="Prototipo_CCL.Views.MainPage"
+             Title="Apontamentos">
+    <ContentPage.BindingContext>
+        <vm:MainViewModel />
+    </ContentPage.BindingContext>
+
+    <Grid RowDefinitions="*, Auto">
+        <CollectionView ItemsSource="{Binding Apontamentos}" Margin="5,10">
+            <CollectionView.EmptyView>
+                <StackLayout Padding="20" VerticalOptions="Center">
+                    <Label Text="Nenhum apontamento registrado." Style="{StaticResource SubtitleLabel}" HorizontalOptions="Center"/>
+                    <Label Text="Clique no botão abaixo para iniciar." Style="{StaticResource BodyLabel}" HorizontalOptions="Center" />
+                </StackLayout>
+            </CollectionView.EmptyView>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="model:Apontamento">
+                    <Frame Style="{StaticResource CardView}">
+                        <Grid RowDefinitions="Auto, Auto" ColumnDefinitions="*, Auto">
+                            <VerticalStackLayout Grid.Column="0">
+                                <Label Text="{Binding Servico}" Style="{StaticResource SubtitleLabel}" FontAttributes="Bold"/>
+                                <Label Text="{Binding Equipe}" Style="{StaticResource BodyLabel}"/>
+                                <Label Text="{Binding InicioJornada, StringFormat='Iniciado em: {0:dd/MM/yyyy HH:mm}'}" Style="{StaticResource CaptionLabel}" Margin="0,5,0,0"/>
+                            </VerticalStackLayout>
+                            <Frame Grid.Column="1" Padding="10,5" CornerRadius="15" VerticalOptions="Start" BorderColor="Transparent">
+                                <Frame.Triggers>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding Status}" Value="Pendente de Validação">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Warning}"/>
+                                    </DataTrigger>
+                                    <DataTrigger TargetType="Frame" Binding="{Binding Status}" Value="Em Andamento">
+                                        <Setter Property="BackgroundColor" Value="{StaticResource Success}"/>
+                                    </DataTrigger>
+                                </Frame.Triggers>
+                                <Label Text="{Binding Status}" TextColor="White" FontSize="10" FontAttributes="Bold"/>
+                            </Frame>
+                        </Grid>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+
+        <Button Grid.Row="1" 
+                Text="Iniciar Novo Apontamento" 
+                Command="{Binding IniciarNovoApontamentoCommand}"
+                Style="{StaticResource PrimaryButton}"
+                Margin="20" />
+    </Grid>
+</ContentPage>
