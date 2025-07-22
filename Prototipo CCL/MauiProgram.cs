@@ -1,6 +1,7 @@
 ﻿using Prototipo_CCL.ViewModels;
 using Prototipo_CCL.Views;
 using Prototipo_CCL.Converters;
+using Prototipo_CCL.Services; // Adicionado
 
 namespace Prototipo_CCL;
 
@@ -17,6 +18,9 @@ public static class MauiProgram
                 fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 fonts.AddFont("FontAwesomeSolid.otf", "FontAwesome");
             });
+
+        // Registro dos Serviços
+        builder.Services.AddSingleton<DatabaseService>(); // Adicionado
 
         // Registro dos ViewModels
         builder.Services.AddSingleton<LoginViewModel>();

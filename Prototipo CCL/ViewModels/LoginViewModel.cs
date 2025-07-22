@@ -1,4 +1,5 @@
-﻿using Prototipo_CCL.Views;
+﻿using Prototipo_CCL.Services; // Adicionado
+using Prototipo_CCL.Views;
 using System.Windows.Input;
 
 namespace Prototipo_CCL.ViewModels
@@ -13,17 +14,22 @@ namespace Prototipo_CCL.ViewModels
 
         public ICommand LoginCommand { get; }
 
-        public LoginViewModel()
-        {
+        private readonly DatabaseService _databaseService;
 
+        // Injeção de dependência do nosso novo serviço de banco de dados
+        public LoginViewModel(DatabaseService databaseService)
+        {
+            _databaseService = databaseService;
             LoginCommand = new Command(async () => await OnLoginClicked());
         }
 
         private async Task OnLoginClicked()
         {
-            if (Username == "Admin" && Password == "admin")
+            // Chama o método de validação do nosso serviço de banco de dados
+            bool isValid = await _databaseService.ValidateLoginAsync(Username, Password);
+
+            if (isValid)
             {
-                // Navega para a rota da TabBar, que por padrão abrirá a primeira Tab (PontoPage)
                 await Shell.Current.GoToAsync($"//MainApp");
             }
             else
